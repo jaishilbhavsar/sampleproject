@@ -1,0 +1,21 @@
+git init
+
+git remote add origin url
+
+git remote -v
+
+git remote remove origin
+
+git add .
+
+git commit -m "message"
+
+git push origin master
+
+
+
+
+steps by zeel
+
+
+git clone url
