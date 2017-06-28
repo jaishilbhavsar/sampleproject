@@ -1,0 +1,70 @@
+a)project :-
+	1)admin
+	2)user
+	3)visitor
+	4)shared:- things which are shared across all directories like 		   class,navbar,images
+
+
+b)tables:-(minimum 5 entries per table)
+	1)user_tbl:- pk_email_id 	varchar(50) 	not null
+		     uname		varchar(15)	not null
+		     password		varchar(10)	length must be between 6 to 10
+		     address		varchar(100)	allow null
+		     mobile_no		varchar(10)	not null
+		     gender		varchar(6)	allow null,default male
+		     profile_pic	varchar(200)	allow null,default image as per 							gender like fb,if path of image 							is deafult image when deleting 							then don't unlink the default 									image
+                    verify 		varchar(7)    
+		    token		varchar(10)
+		    user_type 
+
+	 2)cat_tbl:-
+			isActive :- j column active hoy e j display karavani //dont apply
+		    pk_cat_id		integer,auto
+		    cat_name		varchar(10)
+		
+	3)product_tbl:
+
+		pk_prod_id	integet,auto
+		prod_name	varchar(50)	not null
+		price		number		not null,it should be greater then 0
+		mfg		varchar(50)	not null
+//multi color//	color		varchar(10)	
+		prod_img1	varchar(200)					
+		prod_img2	varchar(200)
+		prod_img3	varchar(200)
+		prod_warranty	varchar(10)
+		prod_soh	varchar(10)
+		prod_desc	varchar(100)
+		fk_cat_id
+	
+	4)cart_tbl:-
+
+		pk_cart_id 	int,auto
+		fk_email_id
+		fk_prod_id
+		cart_qty
+
+	5)bill_tbl:-
+		bill_no		int,auto
+		fk_email_id
+		fk_prod_id
+		bill_amount
+		date
+		shipping_address
+		payment_type	
+
+
+
+admin)
+
+
+user_tbl)	can see all users,delete,view detail except passowrd,user add thaay
+		admin side user add form ma user type admin jode thi levanu
+
+cat_tbl)	add,update,delete
+
+prod_tbl)	add,update,delete
+
+cart_tbl) 	view only
+
+bill_tbl) 	view only,delete	
