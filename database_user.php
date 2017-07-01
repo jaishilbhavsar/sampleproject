@@ -1,5 +1,4 @@
 <?php
-session_start();
 class user_sign
 {
     private static $conn=null;
@@ -26,7 +25,7 @@ public function insuser()
         $sql="insert into user_tbl values('".$_POST["txtmail"]."','".$_POST["txtname"]."','".$_POST["txtpass"]."','".$_POST["txtadd"]."','".$_POST["txtmobile"]."','".$_POST["gender"]."','".$targetfile."','user','no','".$token."')";
         if($conn->query($sql)===true)
         {
-            echo "success";
+            header('location:user_login.php');
         }
         else
         {
@@ -137,4 +136,31 @@ class user_login
     }
 }
 
+
+
+
+class user_disp
+{
+    private static $conn=null;
+    
+    public static function connect()
+    {
+        self::$conn=mysqli_connect('localhost','root','','project_db');
+        return self::$conn;
+    }
+
+    public static function disconnect(){
+        mysqli_close(self::$conn);
+        self::$conn=null;
+    }
+public function insuser()
+    {
+        $conn=user_disp::connect();
+        $conn=new mysqli('localhost','root','','project_db');
+        $sql="select * from user_tbl where pk_email_id='".$_SESSION["usid"]."'";
+        $res=$conn->query($sql);
+        return $res;
+        user_disp::disconnect();
+    }
+}
 ?>

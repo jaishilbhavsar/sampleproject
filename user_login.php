@@ -1,4 +1,3 @@
-
 <!--A Design by W3layouts 
 Author: W3layout
 Author URL: http://w3layouts.com
@@ -49,36 +48,25 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</script>
 <!---//End-rate---->
 </head>
-<body>
 <?php
     include 'user_navbar.php';
-	if(isset($_POST["btnlog"]))
-	{
-	$id=$_POST["txtmail"];
-	$_SESSION["usid"]=$id;
-	$pass=$_POST["txtpass"];
-	$_SESSION["uspass"]=$pass;
-	include 'database_user.php';
-	$obj=new user_login();
-	$res=$obj->getuser();
-	if($res->num_rows==1)
-	{
-    	$row=$res->fetch_assoc();
-    	if($row["verify"]=="yes")
-    	{
-        	echo "success";
-    	}
-    	else
-    	{
-        	echo "verify email";
-    	}
-	}
-	else
-	{
-    	echo "invalid";
-	}
-	}
+    include 'database_user.php';
+    $obj=new user_login();
+    if(isset($_POST["btnsub"]))
+    {
+        $_SESSION["usid"]=$_POST["txtmail"];
+        $_SESSION["uspass"]=$_POST["txtpass"];
+        $res=$obj->getuser();
+        if($res->num_rows==1)
+        {
+            header('location:user_disp.php');
+        }
+        else{
+            echo "fail";
+        }
+    }
 ?>
+<body>
 <!--header-->
 			<div class="col-sm-2 search-right">
 				<ul class="heart">
@@ -147,10 +135,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--login-->
 <div class="container">
 		<div class="login">
-			<form method="post" action="user_login.php">
+		
+			<form action="user_login.php" method="post">
 			<div class="col-md-6 login-do">
 				<div class="login-mail">
-					<input type="text" name ="txtmail" placeholder="Email" required="">
+					<input type="text" name="txtmail" placeholder="Email" required="">
 					<i  class="glyphicon glyphicon-envelope"></i>
 				</div>
 				<div class="login-mail">
@@ -161,7 +150,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						 <label class="checkbox1"><input type="checkbox" name="checkbox" ><i> </i>Forget Password</label>
 					   </a>
 				<label class="hvr-skew-backward">
-					<input type="submit" value="login" name="btnlog">
+					<input type="submit" value="login" name="btnsub">
 				</label>
 			</div>
 			<div class="col-md-6 login-right">
@@ -169,7 +158,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				 
 				 <p>Pellentesque neque leo, dictum sit amet accumsan non, dignissim ac mauris. Mauris rhoncus, lectus tincidunt tempus aliquam, odio 
 				 libero tincidunt metus, sed euismod elit enim ut mi. Nulla porttitor et dolor sed condimentum. Praesent porttitor lorem dui, in pulvinar enim rhoncus vitae. Curabitur tincidunt, turpis ac lobortis hendrerit, ex elit vestibulum est, at faucibus erat ligula non neque.</p>
-				<a href="register.php" class=" hvr-skew-backward">Register</a>
+				<a href="register.html" class=" hvr-skew-backward">Register</a>
 
 			</div>
 			
