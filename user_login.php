@@ -49,24 +49,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!---//End-rate---->
 </head>
 <?php
-    include 'user_navbar.php';
-    include 'database_user.php';
-    $obj=new user_login();
-    if(isset($_POST["btnsub"]))
-    {
-        $_SESSION["usid"]=$_POST["txtmail"];
-        $_SESSION["uspass"]=$_POST["txtpass"];
-        $res=$obj->getuser();
-        if($res->num_rows==1)
-        {
-            header('location:user_disp.php');
-        }
-        else{
-            echo "fail";
-        }
-    }
-?>
+	require 'user_navbar.php';
+    ?>
 <body>
+<form action="user_login_code.php" method="post">
 <!--header-->
 			<div class="col-sm-2 search-right">
 				<ul class="heart">
@@ -136,7 +122,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="container">
 		<div class="login">
 		
-			<form action="user_login.php" method="post">
+			
 			<div class="col-md-6 login-do">
 				<div class="login-mail">
 					<input type="text" name="txtmail" placeholder="Email" required="">
@@ -163,7 +149,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 			
 			<div class="clearfix"> </div>
-			</form>
+			
 		</div>
 
 </div>
@@ -257,6 +243,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<script src="js/simpleCart.min.js"> </script>
 <!-- slide -->
 <script src="js/bootstrap.min.js"></script>
- 
+ </form>
 </body>
 </html>

@@ -127,7 +127,7 @@ class user_login
     {
         $conn=user_login::connect();
     
-                $id=$_SESSION["usid"];
+                $id=$_SESSION["userid"];
                 $ps=$_SESSION["uspass"];
                 $sql="select * from user_tbl where pk_email_id='".$id."' and password='".$ps."'";
                 $res=$conn->query($sql);
@@ -153,14 +153,25 @@ class user_disp
         mysqli_close(self::$conn);
         self::$conn=null;
     }
-public function insuser()
+    public function getuser()
     {
         $conn=user_disp::connect();
+        $id=$_SESSION["userid"];
         $conn=new mysqli('localhost','root','','project_db');
-        $sql="select * from user_tbl where pk_email_id='".$_SESSION["usid"]."'";
+        $sql="select * from user_tbl where pk_email_id='".$id."'";
         $res=$conn->query($sql);
         return $res;
         user_disp::disconnect();
     }
+    /*public function getuserch()
+    {
+        $conn=user_disp::connect();
+        $id=$_SESSION["userid"];
+        $ps=$_SESSION["userps1"];
+        $sql="update user_tbl set password='".$ps."' where pk_email_id='".$id."'";
+        $res=$conn->query($sql);
+        return $res;
+        user_disp::disconnect();
+    }*/
 }
 ?>
